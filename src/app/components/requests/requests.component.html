@@ -1,0 +1,27 @@
+<div class="table-users">
+    <div class="header">All Requests</div>
+    <table cellspacing="0">
+       <tr>
+          <th></th>
+          <th>Client</th>
+          <!-- <th>Address</th> -->
+          <!-- <th>Deal Detailes</th> -->
+          <th>Action</th>
+       </tr>
+       <tr *ngFor="let request of requests">
+          <td>
+              <img src="/api/v0/public/img/{{request.client.id}}"
+                alt="profilImg" />
+            </td>
+          <td>
+              <a routerLink="/dashboard/client/{{request.client.id}}">{{request.client.firstName}} {{request.client.lastName}}</a>
+     </td>
+          <td>
+             <div class="buttonBlock">
+                <button class="btn btn-info" (click)="view(request.id)" >View</button>
+                <button class="btn btn-danger" style="border-radius: 50%;" (click)="delete(request.client.id)">X</button>
+             </div>
+          </td>
+       </tr>
+    </table>
+ </div>

@@ -1,0 +1,23 @@
+<div *ngIf="message!=null">
+    <div>
+        <h5>Name:<div class="content"> {{message.name}} </div>
+        </h5>
+        <h5>Email:<div class="content"> {{message.email}} </div>
+        </h5>
+        <h5>Subject:<div class="content"> {{message.subject}} </div>
+        </h5>
+        <h5>Context:<div class="content"> {{message.context}} </div>
+        </h5>
+    </div>
+    <hr />
+    <div class="reply">
+        <textarea cols="30" rows="10" placeholder="your reply context here" [(ngModel)]="replyContext"></textarea>
+        <div class="btnBlock">
+            <button class="btn btn-info" (click)="reply()" [disabled]="wait">Reply</button>
+            <button class="btn btn-danger" (click)="delete()" [disabled]="wait">Delete</button>
+        </div>
+        <div class="loading">
+            <img *ngIf="wait" src="../../../assets/Loader.gif" height="200" width="100%" alt="Loading">
+        </div>
+    </div>
+</div>

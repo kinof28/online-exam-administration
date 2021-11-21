@@ -1,0 +1,21 @@
+<div class="table-users">
+   <div class="header">Deleted Articles</div>
+   
+   <table cellspacing="0">
+      <tr>
+         <th></th>
+         <th>Title</th>
+         <th>Address</th>
+         <th>Remaining Places</th>
+         <th>Action</th>
+      </tr>
+      <tr *ngFor="let article of articles"> 
+         <td><img src="/api/v0/public/img/{{article.id}}/{{article.mainImage?article.mainImage:1}}" alt="{{article.title}}" /></td>
+         <td>{{article.title}} </td>
+         <td>{{article.address}}</td>
+         <td>{{article.remainingRoomMates}}</td>
+         <td>               <button class="btn btn-info" (click)="view(article.id)" >View</button>
+         </td>
+      </tr>
+   </table>
+</div>

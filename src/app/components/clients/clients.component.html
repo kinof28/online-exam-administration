@@ -1,0 +1,32 @@
+<div class="table-users">
+    <div class="header">All Clients</div>
+    <table cellspacing="0">
+       <tr>
+          <th></th>
+          <th>Email</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Phone Number</th>
+          <th>Is Seller</th>
+          <th>View</th>
+          <th>Action</th>
+       </tr>
+       <tr *ngFor="let client of clients; let i = index">
+          <td><img src="/api/v0/public/img/{{this.client.id}}"
+                alt="{{client.email}}" /></td>
+          <td>{{client.email}} </td>
+          <td>{{client.firstName}}</td>
+          <td>{{client.lastName}}</td>
+          <td>{{client.phoneNumber}}</td>
+          <td>{{client.isSeller}}</td>
+          <td><a routerLink="/dashboard/client/{{client.id}}">View</a></td>
+          <td>
+             <div class="buttonBlock">
+                <!-- <button class="btn btn-warning" (click)="update(article.id)" >Update</button> -->
+                <!-- <button class="btn btn-info" (click)="view(article.id)" >View</button> -->
+                <button class="btn btn-danger" style="border-radius: 50%;" (click)="delete(client.id)">X</button>
+             </div>
+          </td>
+       </tr>
+    </table>
+ </div>

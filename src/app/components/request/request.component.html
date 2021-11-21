@@ -1,0 +1,36 @@
+<div *ngIf="request!=null">
+<div >
+    <a routerLink="/dashboard/client/{{request.client.id}}">
+        <h2> Client </h2>
+    </a>
+    <h5>First name:<span> {{request.client.firstName}} </span> </h5>
+    <h5>Last name:<span> {{request.client.lastName}} </span> </h5>
+    <h5>Email:<span> {{request.client.email}} </span> </h5>
+    <h5>Phone Number:<span> {{request.client.phoneNumber}} </span> </h5>
+    <h5>address:<span> {{request.client.address?request.client.address:"no address"}} </span> </h5>
+</div>
+<hr />
+<div>
+    <h2>Request</h2>
+    <div>
+        <div>
+            <h5>Identity card number:<span> {{request.idNumber}} </span> </h5>
+            <hr />
+            <h2> Face Image </h2>
+            <img *ngIf="request.faceImage!=nan" src="/api/v0/public/reqimg/{{request.client.id}}/{{request.faceImage}}" alt="00000">
+            <br>
+            <hr />
+            <h2> Identity card Image </h2>
+            <img *ngIf="request.idImage!=nan" src="/api/v0/public/reqimg/{{request.client.id}}/{{request.idImage}}" alt="00000">
+            <br>
+            <hr />
+        </div>
+        <div class="clientDiv">
+            <button class="btn btn-success" (click)="approve()" >approve</button>
+            <button class="btn btn-danger" (click)="decline()">decline</button>
+        </div>
+    </div>
+    <hr />
+
+</div>
+</div>

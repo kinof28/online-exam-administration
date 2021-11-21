@@ -1,0 +1,46 @@
+.content {
+    background-color: antiquewhite;
+    color: black;
+    border-radius: 20px;
+    padding: 10px;
+}
+.clientDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;}
+button{
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin: 1rem;
+    padding-right: 5rem;
+    padding-left: 5rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+}
+.btnBlock{
+    display: flex;
+    flex-direction: column;}
+img{
+    max-width: -webkit-fill-available;
+}
+textarea{
+    width: 75%;
+    min-height: 20rem;
+  border-radius: 25px;
+  padding: 12px 30px;
+  outline: none;
+
+}
+.reply{
+    /* background-color: chocolate; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.loading{
+    /* position: absolute; */
+    margin-top: -5rem;
+    /* margin-left: -7rem; */
+}
