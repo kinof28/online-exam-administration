@@ -11,7 +11,7 @@ export class LoginServiceService {
   constructor(private httpClient: HttpClient) { }
 
   public login(loginRequest:LoginRequest):Observable<string>{
-    return this.httpClient.post<string>("/api/v0/public/live-with-me-head-master/",loginRequest);
+    return this.httpClient.post<string>("/api/v1/public/staouti-il-m1-admin/",loginRequest);
   }
-  
+
 }

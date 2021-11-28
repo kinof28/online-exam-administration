@@ -23,11 +23,9 @@ const routes: Routes = [
   { path: 'home', component: AdminPanelComponent, canActivate: [ClientGuard] },
   { path: 'login', component: LoginComponent, canActivate: [NotClientGuard] },
 
-
-
-
   {
-    path: 'dashboard', component: AdminPanelComponent,
+    path: 'dashboard',
+    component: AdminPanelComponent,
     children: [
       { path: 'articles', component: ArticlesComponent },
       { path: 'clients', component: ClientsComponent },
@@ -36,24 +34,21 @@ const routes: Routes = [
       { path: 'messages', component: MessagesComponent },
       { path: 'requests', component: RequestsComponent },
       { path: 'deal/:id', component: DealComponent },
-      { path: '', component: ArticlesComponent },
+      { path: '', component: ProfilComponent },
       { path: 'settings', component: ProfilComponent },
       { path: 'article/:id', component: ArticleComponent },
       { path: 'message/:id', component: MessageComponent },
       { path: 'client/:id', component: ClientDetailesComponent },
       { path: 'request/:id', component: RequestComponent },
     ],
-    canActivate: [ClientGuard]
+    canActivate: [ClientGuard],
   },
 
-  { path: '**', redirectTo: 'home', pathMatch: 'full' }
-
+  { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule,
-    RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule, RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
