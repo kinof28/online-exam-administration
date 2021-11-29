@@ -9,25 +9,58 @@
       <ul>
         <li>
           <br />
-          <a href="#">students</a>
+          <a
+            class="active"
+            [routerLink]="['/dashboard/students']"
+            routerLinkActive="router-link-active"
+            >Students</a
+          >
         </li>
 
         <li>
           <br />
-          <a href="#">teachers</a>
+          <a
+            [routerLink]="['/dashboard/teachers']"
+            routerLinkActive="router-link-active"
+            >Teachers</a
+          >
         </li>
 
         <li>
           <br />
-          <a href="#">exams</a>
+          <a
+            [routerLink]="['/dashboard/exams']"
+            routerLinkActive="router-link-active"
+            >Exams</a
+          >
         </li>
         <li>
           <br />
-          <a href="#">branches</a>
+          <a
+            [routerLink]="['/dashboard/university']"
+            routerLinkActive="router-link-active"
+            >University Details</a
+          >
         </li>
         <li>
           <br />
-          <a href="#">Logout</a>
+          <a
+            [routerLink]="['/dashboard/messages']"
+            routerLinkActive="router-link-active"
+            >Messages</a
+          >
+        </li>
+        <li>
+          <br />
+          <a
+            [routerLink]="['/dashboard/settings']"
+            routerLinkActive="router-link-active"
+            >Settings</a
+          >
+        </li>
+        <li>
+          <br />
+          <a (click)="logout()" class="link">Logout</a>
         </li>
       </ul>
     </div>
@@ -35,7 +68,7 @@
   <!-- ---------------------------------------------------------------------- -->
   <div class="main-content">
     <header>
-      <h2>O-<font style="color: #03bd8e"> Exam </font></h2>
+      <h2>Online-<font style="color: #03bd8e"> Exam </font></h2>
       <div class="user-wrapper">
         <a href="#"
           ><img

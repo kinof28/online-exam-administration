@@ -1,3 +1,7 @@
+import { UniversityComponent } from './components/university/university.component';
+import { ExamsComponent } from './components/exams/exams.component';
+import { TeachersComponent } from './components/teachers/teachers.component';
+import { StudentsComponent } from './components/students/students.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClientGuard } from './client.guard';
@@ -20,31 +24,31 @@ import { SellerDetailsComponent } from './components/seller-details/seller-detai
 import { NotClientGuard } from './not-client.guard';
 
 const routes: Routes = [
-  { path: 'home', component: AdminPanelComponent, canActivate: [ClientGuard] },
+  // { path: 'home', component: AdminPanelComponent, canActivate: [ClientGuard] },
   { path: 'login', component: LoginComponent, canActivate: [NotClientGuard] },
 
   {
     path: 'dashboard',
     component: AdminPanelComponent,
     children: [
-      { path: 'articles', component: ArticlesComponent },
-      { path: 'clients', component: ClientsComponent },
-      { path: 'deleted', component: DeletedArticlesComponent },
-      { path: 'closed', component: ClosedArticlesComponent },
+      { path: 'students', component: StudentsComponent },
+      { path: 'teachers', component: TeachersComponent },
+      { path: 'exams', component: ExamsComponent },
+      { path: 'university', component: UniversityComponent },
       { path: 'messages', component: MessagesComponent },
-      { path: 'requests', component: RequestsComponent },
-      { path: 'deal/:id', component: DealComponent },
+      // { path: 'requests', component: RequestsComponent },
+      // { path: 'deal/:id', component: DealComponent },
       { path: '', component: ProfilComponent },
       { path: 'settings', component: ProfilComponent },
-      { path: 'article/:id', component: ArticleComponent },
+      // { path: 'article/:id', component: ArticleComponent },
       { path: 'message/:id', component: MessageComponent },
-      { path: 'client/:id', component: ClientDetailesComponent },
-      { path: 'request/:id', component: RequestComponent },
+      // { path: 'client/:id', component: ClientDetailesComponent },
+      // { path: 'request/:id', component: RequestComponent },
     ],
     canActivate: [ClientGuard],
   },
 
-  { path: '**', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
 
 @NgModule({

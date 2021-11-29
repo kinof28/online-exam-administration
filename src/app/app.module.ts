@@ -1,3 +1,4 @@
+import { UniversityComponent } from './components/university/university.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -23,6 +24,10 @@ import { RequestComponent } from './components/request/request.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { MessageComponent } from './components/message/message.component';
 import { RouterModule } from '@angular/router';
+import { StudentsComponent } from './components/students/students.component';
+import { TeachersComponent } from './components/teachers/teachers.component';
+import { ExamsComponent } from './components/exams/exams.component';
+import { UnstatisticsComponent } from './components/unstatistics/unstatistics.component';
 
 @NgModule({
   declarations: [
@@ -44,15 +49,26 @@ import { RouterModule } from '@angular/router';
     RequestComponent,
     ClientsComponent,
     MessageComponent,
+    StudentsComponent,
+    TeachersComponent,
+    ExamsComponent,
+    UniversityComponent,
+    UnstatisticsComponent,
   ],
   imports: [
     RouterModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: ClientHttpInterceptor, multi: true }],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ClientHttpInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
