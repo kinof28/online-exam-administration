@@ -13,46 +13,23 @@
               <thead>
                 <tr>
                   <td>Teacher</td>
-                  <td>Formation</td>
                   <td>option</td>
                   <td>Starting Date</td>
                   <td>Ending Date</td>
+                  <td></td>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>ahmed abdelkader</td>
-                  <td>isi</td>
-                  <td>m1</td>
-                  <td>14/11/2021</td>
-                  <td>25/11/2021</td>
-
+                <tr *ngFor="let exam of exams$ | async as exams">
                   <td>
-                    <button class="btn">
-                      <a
-                        href=""
-                        onclick="return confirm('Are You sure to delete this account ?');"
-                      >
-                        delete
-                      </a>
-                    </button>
+                    {{ exam.teacher?.firstName }} {{ exam.teacher?.lastName }}
                   </td>
-                </tr>
-                <tr>
-                  <td>sidou mohamed</td>
-                  <td>rsd</td>
-                  <td>m1</td>
-                  <td>20/11/2021</td>
-                  <td>10/12/2021</td>
-
+                  <td>{{ exam.option }}</td>
+                  <td>{{ exam.startDate?.toString()?.slice(0, 10) }}</td>
+                  <td>{{ exam.endDate?.toString()?.slice(0, 10) }}</td>
                   <td>
-                    <button class="btn">
-                      <a
-                        href=""
-                        onclick="return confirm('Are You sure to delete this account ?');"
-                      >
-                        delete
-                      </a>
+                    <button class="btn" (click)="delete(exam.id)">
+                      delete
                     </button>
                   </td>
                 </tr>

@@ -35,7 +35,7 @@ const routes: Routes = [
       { path: 'teachers', component: TeachersComponent },
       { path: 'exams', component: ExamsComponent },
       { path: 'university', component: UniversityComponent },
-      { path: 'messages', component: MessagesComponent },
+      // { path: 'messages', component: MessagesComponent },
       // { path: 'requests', component: RequestsComponent },
       // { path: 'deal/:id', component: DealComponent },
       { path: '', component: ProfilComponent },

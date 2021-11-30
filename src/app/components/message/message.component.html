@@ -1,4 +1,4 @@
-<div *ngIf="message!=null">
+<!-- <div *ngIf="message!=null">
     <div>
         <h5>Name:<div class="content"> {{message.name}} </div>
         </h5>
@@ -20,4 +20,68 @@
             <img *ngIf="wait" src="../../../assets/Loader.gif" height="200" width="100%" alt="Loading">
         </div>
     </div>
-</div>
+</div> -->
+<body>
+  <main>
+    <img src="../../../assets/tenor.gif" />
+    <section class="contact" id="contact">
+      <div>
+        <div class="contact-content">
+          <div class="column right">
+            <div class="fields">
+              <div class="field name">
+                <input type="text" value="{{ message.name }}" disabled />
+              </div>
+            </div>
+
+            <div class="field name">
+              <input type="text" value="{{ message.email }}" disabled />
+            </div>
+
+            <div class="field name">
+              <input type="text" value="{{ message.subject }}" disabled />
+            </div>
+
+            <div class="field textarea">
+              <textarea
+                cols="30"
+                rows="10"
+                placeholder="{{ message.context }}"
+                disabled
+              ></textarea>
+            </div>
+            <div class="clickable">
+              <img
+                src="../../../assets/delete.png"
+                style="width: 7%; margin-left: 80%"
+                alt="delete"
+                (click)="delete()"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <br />
+    <section class="contact" id="contact">
+      <div class="max-width">
+        <div class="contact-content">
+          <div class="column right">
+            <div class="field textarea">
+              <textarea
+                cols="30"
+                rows="10"
+                placeholder="Your Respond.."
+                [(ngModel)]="replyContext"
+                required
+              ></textarea>
+            </div>
+            <div class="button-area">
+              <button type="submit" (click)="reply()">Respond</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>

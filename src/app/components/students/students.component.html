@@ -12,42 +12,24 @@
             <table width="100%">
               <thead>
                 <tr>
-                  <td>Family name</td>
                   <td>First name</td>
-                  <td>departement</td>
-                  <td>option</td>
-                  <td>specialty</td>
+                  <td>Last name</td>
+                  <td>Department</td>
+                  <td>Degree</td>
+                  <td>Options</td>
                   <td></td>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>ahmed</td>
-                  <td>abdelkader</td>
-                  <td>scienece exact</td>
-                  <td>m 1</td>
-                  <td>informatiquer</td>
-
+                <tr *ngFor="let student of students$ | async as students">
+                  <td>{{ student.firstName }}</td>
+                  <td>{{ student.lastName }}</td>
+                  <td>{{ student.department }}</td>
+                  <td>{{ student.degree }}</td>
+                  <td>{{ student.activeOptions }}</td>
                   <td>
-                    <button class="btn">
-                      <a href="" onclick="return confirm('Are You sure ?');">
-                        delete
-                      </a>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>ahmed</td>
-                  <td>abdelkader</td>
-                  <td>scienece exact</td>
-                  <td>m 1</td>
-                  <td>informatiquer</td>
-
-                  <td>
-                    <button class="btn">
-                      <a href="" onclick="return confirm('Are You sure ?');">
-                        delete
-                      </a>
+                    <button class="btn" (click)="delete(student.id)">
+                      delete
                     </button>
                   </td>
                 </tr>

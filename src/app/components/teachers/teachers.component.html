@@ -12,43 +12,30 @@
             <table width="100%">
               <thead>
                 <tr>
-                  <td>Family name</td>
                   <td>First name</td>
-                  <td>departement</td>
-                  <td>specialty</td>
+                  <td>Last name</td>
+                  <td>Phone Number</td>
+                  <td>Department</td>
+                  <td>Second Department</td>
+                  <td></td>
                 </tr>
               </thead>
               <tbody>
-                <td>ahmed</td>
-                <td>abdelkader</td>
-                <td>scienece exact</td>
-                <td>informatiquer</td>
-                <tr>
+                <tr *ngFor="let teacher of teachers$ | async as teachers">
+                  <td>{{ teacher.firstName }}</td>
+                  <td>{{ teacher.lastName }}</td>
+                  <td>{{ teacher.phoneNumber }}</td>
+                  <td>{{ teacher.department }}</td>
                   <td>
-                    <button class="btn">
-                      <a
-                        href=""
-                        onclick="return confirm('Are You sure to delete this account ?');"
-                      >
-                        delete
-                      </a>
-                    </button>
+                    {{
+                      teacher.secondDepartment
+                        ? teacher.secondDepartment
+                        : "----"
+                    }}
                   </td>
-                </tr>
-                <tr>
-                  <td>ahmed</td>
-                  <td>abdelkader</td>
-                  <td>scienece exact</td>
-                  <td>informatiquer</td>
-
                   <td>
-                    <button class="btn">
-                      <a
-                        href=""
-                        onclick="return confirm('Are You sure to delete this account ?');"
-                      >
-                        delete
-                      </a>
+                    <button class="btn" (click)="delete(teacher.id)">
+                      delete
                     </button>
                   </td>
                 </tr>

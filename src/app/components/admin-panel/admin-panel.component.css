@@ -1,0 +1,23 @@
+.logout {
+  background-color: firebrick;
+  border-radius: 1rem;
+  width: 30%;
+  margin-left: 25%;
+}
+.collabsed {
+  height: 0px;
+  opacity: 0;
+}
+.expanded {
+  height: 510px;
+  opacity: 1;
+}
+button {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  flex-wrap: nowrap;
+  background: firebrick;
+  border-radius: 0.4rem;
+}
