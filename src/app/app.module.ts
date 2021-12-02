@@ -29,8 +29,8 @@ import { TeachersComponent } from './components/teachers/teachers.component';
 import { ExamsComponent } from './components/exams/exams.component';
 import { UnstatisticsComponent } from './components/unstatistics/unstatistics.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
 import { MatTreeModule } from '@angular/material/tree';
-import { MatPseudoCheckbox } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,6 @@ import { MatPseudoCheckbox } from '@angular/material/core';
     LoginComponent,
     ArticleComponent,
     AdminPanelComponent,
-    // ArticleCardComponent,
     ProfilComponent,
     ArticlesComponent,
     DeletedArticlesComponent,
@@ -65,8 +64,8 @@ import { MatPseudoCheckbox } from '@angular/material/core';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    // MatTreeModule,
-    // MatPseudoCheckbox,
+    MatTreeModule,
+    MatIconModule,
   ],
   providers: [
     {
