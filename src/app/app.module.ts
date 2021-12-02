@@ -28,6 +28,9 @@ import { StudentsComponent } from './components/students/students.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
 import { ExamsComponent } from './components/exams/exams.component';
 import { UnstatisticsComponent } from './components/unstatistics/unstatistics.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatPseudoCheckbox } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,9 @@ import { UnstatisticsComponent } from './components/unstatistics/unstatistics.co
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    // MatTreeModule,
+    // MatPseudoCheckbox,
   ],
   providers: [
     {
