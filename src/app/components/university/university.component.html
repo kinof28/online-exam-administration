@@ -1,4 +1,5 @@
 <div [ngClass]="level == 0 ? 'main' : 'next'">
+  <h2>List Of {{ levelString() }}</h2>
   <ul>
     <li *ngFor="let branch of branches">
       <button *ngIf="hasChild(branch)" class="list-button">
@@ -12,7 +13,11 @@
       <div class="inline">
         {{ branch.name }}
       </div>
-      <button class="list-button">
+      <button
+        class="list-button"
+        *ngIf="!hasChild(branch)"
+        (click)="delete(branch)"
+      >
         <img src="../../../assets/delete-100.png" alt="Delete" height="20" />
       </button>
       <button class="list-button">
@@ -23,8 +28,16 @@
           (click)="edit(branch)"
         />
       </button>
+      <button class="list-button">
+        <img
+          src="../../../assets/icons8-view-49.png"
+          alt="View"
+          height="20"
+          (click)="view(branch)"
+        />
+      </button>
       <button
-        *ngIf="!hasChild(branch)"
+        *ngIf="!hasChild(branch) && level < 3"
         class="list-button"
         (click)="addNext(branch)"
       >
@@ -42,5 +55,7 @@
   </ul>
   <button class="list-button" (click)="add()">
     <img src="../../../assets/add.png" alt="add" height="20" />add
+    {{ levelString() }}
   </button>
+  <div class="error">{{ errorMessage }}</div>
 </div>

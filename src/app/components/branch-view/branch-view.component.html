@@ -1,0 +1,25 @@
+<mat-dialog-content>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ title }} Details</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      name : {{ branch.name }} <br />
+      description : {{ branch.description }}<br />
+      <span *ngIf="branch.type != undefined">
+        type : {{ branch.type }} <br />
+      </span>
+
+      <span *ngIf="branch.level != undefined">
+        level : {{ branch.level }} <br />
+      </span>
+      <span *ngIf="branch.speciality != undefined">
+        speciality name : {{ branch.speciality.name }} <br />
+        speciality description : {{ branch.speciality.description }} <br />
+      </span>
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="closeMe()">Close</button>
+</mat-dialog-actions>

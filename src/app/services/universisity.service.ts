@@ -33,4 +33,21 @@ export class UniversisityService {
       request
     );
   }
+  public editBranch(request: any, branchType: string): Observable<string> {
+    return this.httpClient.put<string>(
+      `/api/v1/admin/update/${branchType.toLowerCase()}`,
+      request
+    );
+  }
+  public deleteBranch(
+    id: number,
+    superId: number,
+    branchType: string
+  ): Observable<string> {
+    return this.httpClient.delete<string>(
+      `/api/v1/admin/delete/${branchType.toLowerCase()}/${id}/${
+        superId != 0 ? superId : ''
+      }`
+    );
+  }
 }

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Branch } from 'src/app/modules/branch';
 import { UniversisityService } from 'src/app/services/universisity.service';
 import { AddBranchComponent } from '../add-branch/add-branch.component';
+import { BranchViewComponent } from '../branch-view/branch-view.component';
 
 @Component({
   selector: 'app-university',
@@ -14,7 +15,8 @@ export class UniversityComponent implements OnInit {
   @Input() level: number = 0;
   @Input() id: number = 0;
   @Input() departmentId: number = 0;
-
+  errorMessage: string = '';
+  selectedBranch: Branch = new Branch();
   constructor(
     private service: UniversisityService,
     private dialog: MatDialog
@@ -43,8 +45,8 @@ export class UniversityComponent implements OnInit {
         return 'Degree';
       case 3:
         return 'Option';
-      case 4:
-        return 'Speciality';
+      // case 4:
+      //   return 'Speciality';
       default:
         return '';
     }
@@ -81,5 +83,28 @@ export class UniversityComponent implements OnInit {
         departmentId: this.departmentId,
       },
     });
+  }
+  delete(branch: Branch): void {
+    this.service
+      .deleteBranch(branch.id, this.id, this.levelString())
+      .subscribe((data) => {
+        if (data.startsWith('deleted')) window.location.reload();
+        else
+          this.errorMessage =
+            'you can not delete this ' +
+            this.levelString() +
+            ' with id ' +
+            branch.id +
+            ' please contact support at ab28fb@gmail.com for more details ';
+      });
+  }
+  view(branch: Branch): void {
+    this.dialog.open(BranchViewComponent, {
+      data: {
+        branch: branch,
+        title: this.levelString(),
+      },
+    });
+    this.selectedBranch = branch;
   }
 }

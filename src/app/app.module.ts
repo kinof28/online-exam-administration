@@ -38,6 +38,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { AddBranchComponent } from './components/add-branch/add-branch.component';
+import { BranchViewComponent } from './components/branch-view/branch-view.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { AddBranchComponent } from './components/add-branch/add-branch.component
     UniversityComponent,
     UnstatisticsComponent,
     AddBranchComponent,
+    BranchViewComponent,
   ],
   imports: [
     RouterModule,

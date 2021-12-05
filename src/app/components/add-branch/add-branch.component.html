@@ -27,7 +27,7 @@
           ></textarea>
         </mat-form-field>
         <br />
-        <mat-form-field appearance="fill" *ngIf="isDegree()">
+        <mat-form-field appearance="fill" *ngIf="isDegree() && !isEdit()">
           <mat-label>Degree Type</mat-label>
           <mat-select
             [(ngModel)]="request.degreeType"
@@ -40,7 +40,7 @@
           </mat-select>
         </mat-form-field>
         <br />
-        <mat-form-field appearance="fill" *ngIf="isOption()">
+        <mat-form-field appearance="fill" *ngIf="isOption() && !isEdit()">
           <mat-label>Level</mat-label>
           <mat-select [(ngModel)]="request.level" name="level" required>
             <mat-option value="FirstYear"> First Year </mat-option>
@@ -50,7 +50,10 @@
           </mat-select>
         </mat-form-field>
         <br />
-        <mat-form-field appearance="fill" *ngIf="isOption() && !addSpeciality">
+        <mat-form-field
+          appearance="fill"
+          *ngIf="isOption() && !addSpeciality && !isEdit()"
+        >
           <mat-label>Speciality</mat-label>
           <mat-select
             name="speciality"
@@ -74,7 +77,7 @@
             disabled
           ></textarea>
         </mat-form-field>
-        <mat-form-field *ngIf="isOption() && addSpeciality">
+        <mat-form-field *ngIf="isOption() && addSpeciality && !isEdit()">
           <!-- <mat-label>Speciality</mat-label> -->
           <input
             matInput
@@ -96,7 +99,11 @@
           ></textarea>
         </mat-form-field>
         <br />
-        <button mat-raised-button *ngIf="isOption()" (click)="addSpecialityF()">
+        <button
+          mat-raised-button
+          *ngIf="isOption() && !isEdit()"
+          (click)="addSpecialityF()"
+        >
           {{ !addSpeciality ? "add speciality" : "cancel" }}
         </button>
         <mat-card-actions>

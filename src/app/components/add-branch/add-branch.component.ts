@@ -53,34 +53,52 @@ export class AddBranchComponent implements OnInit {
   add() {
     this.request.SuperId = this.data.SuperId;
     console.log(this.request);
-    if (this.addSpeciality) {
-      this.selectedSpeciality.departmentId = this.data.departmentId;
+    if (this.data.type == 'edit') {
       this.service
-        .createSpeciality(this.selectedSpeciality)
+        .editBranch(
+          {
+            id: this.data.branch.id,
+            name: this.request.name,
+            describtion: this.request.description,
+          },
+          this.data.title
+        )
         .subscribe((data) => {
-          console.log(data);
-          if (data.startsWith('created')) {
-            this.request.specialityID = Number(data.substr(7));
-            console.log(this.request.specialityID);
-            this.service
-              .createBranch(this.request, this.data.title)
-              .subscribe((data) => {
-                // console.log(data);
-                if (data.startsWith('created')) window.location.reload();
-              });
-          }
+          if (data.startsWith('updated')) window.location.reload();
         });
     } else {
-      this.service
-        .createBranch(this.request, this.data.title)
-        .subscribe((data) => {
-          // console.log(data);
-          if (data.startsWith('created')) window.location.reload();
-        });
+      if (this.addSpeciality) {
+        this.selectedSpeciality.departmentId = this.data.departmentId;
+        this.service
+          .createSpeciality(this.selectedSpeciality)
+          .subscribe((data) => {
+            console.log(data);
+            if (data.startsWith('created')) {
+              this.request.specialityID = Number(data.substr(7));
+              console.log(this.request.specialityID);
+              this.service
+                .createBranch(this.request, this.data.title)
+                .subscribe((data) => {
+                  // console.log(data);
+                  if (data.startsWith('created')) window.location.reload();
+                });
+            }
+          });
+      } else {
+        this.service
+          .createBranch(this.request, this.data.title)
+          .subscribe((data) => {
+            // console.log(data);
+            if (data.startsWith('created')) window.location.reload();
+          });
+      }
     }
   }
   addSpecialityF(): void {
     this.addSpeciality = !this.addSpeciality;
     this.selectedSpeciality = new Branch();
+  }
+  isEdit(): boolean {
+    return this.data.type == 'edit';
   }
 }
