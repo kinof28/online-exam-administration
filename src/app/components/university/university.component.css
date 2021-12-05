@@ -1,7 +1,16 @@
-body {
+.main {
   margin-top: 5%;
   padding-left: 25%;
 }
 .mat-form-field {
   margin-right: 4px;
+}
+.inline {
+  display: inline;
+}
+.list-button {
+  border: none;
+}
+.next {
+  padding-left: 2rem;
 }

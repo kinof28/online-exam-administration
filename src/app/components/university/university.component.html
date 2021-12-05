@@ -1,26 +1,46 @@
-<body>
-  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-    <!-- This is the tree node template for leaf nodes -->
-    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-      <!-- use a disabled button to provide padding for tree leaf -->
-      <button mat-icon-button disabled></button>
-      {{ node.name }}
-    </mat-tree-node>
-    <!-- This is the tree node template for expandable nodes -->
-    <mat-tree-node
-      *matTreeNodeDef="let node; when: hasChild"
-      matTreeNodePadding
-    >
-      <button
-        mat-icon-button
-        matTreeNodeToggle
-        [attr.aria-label]="'Toggle ' + node.name"
-      >
-        <mat-icon class="mat-icon-rtl-mirror">
-          {{ treeControl.isExpanded(node) ? "expand_more" : "chevron_right" }}
-        </mat-icon>
+<div [ngClass]="level == 0 ? 'main' : 'next'">
+  <ul>
+    <li *ngFor="let branch of branches">
+      <button *ngIf="hasChild(branch)" class="list-button">
+        <img
+          src="../../../assets/down-button.png"
+          alt=">>"
+          height="20"
+          (click)="expand(branch)"
+        />
       </button>
-      {{ node.name }}
-    </mat-tree-node>
-  </mat-tree>
-</body>
+      <div class="inline">
+        {{ branch.name }}
+      </div>
+      <button class="list-button">
+        <img src="../../../assets/delete-100.png" alt="Delete" height="20" />
+      </button>
+      <button class="list-button">
+        <img
+          src="../../../assets/edit-64.png"
+          alt="Edit"
+          height="20"
+          (click)="edit(branch)"
+        />
+      </button>
+      <button
+        *ngIf="!hasChild(branch)"
+        class="list-button"
+        (click)="addNext(branch)"
+      >
+        <img src="../../../assets/add.png" alt="add" height="20" />
+      </button>
+      <div *ngIf="branch.expanded">
+        <app-university
+          [branches]="branch.children"
+          [level]="level + 1"
+          [id]="branch.id"
+          [departmentId]="level == 1 ? branch.id : departmentId"
+        ></app-university>
+      </div>
+    </li>
+  </ul>
+  <button class="list-button" (click)="add()">
+    <img src="../../../assets/add.png" alt="add" height="20" />add
+  </button>
+</div>

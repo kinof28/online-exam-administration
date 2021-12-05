@@ -1,0 +1,113 @@
+<h1 mat-dialog-title>{{ data.type }} {{ data.title }}</h1>
+<mat-dialog-content>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ data.title }} Details</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="{{ data.title }} name"
+            type="text"
+            name="title"
+            [(ngModel)]="request.name"
+            required
+          />
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <textarea
+            matInput
+            placeholder="{{ data.title }} description"
+            name="description"
+            [(ngModel)]="request.description"
+            required
+          ></textarea>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill" *ngIf="isDegree()">
+          <mat-label>Degree Type</mat-label>
+          <mat-select
+            [(ngModel)]="request.degreeType"
+            name="degreeType"
+            required
+          >
+            <mat-option value="Bachelor"> Bachelor </mat-option>
+            <mat-option value="Master"> Master </mat-option>
+            <mat-option value="Phd"> Phd </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill" *ngIf="isOption()">
+          <mat-label>Level</mat-label>
+          <mat-select [(ngModel)]="request.level" name="level" required>
+            <mat-option value="FirstYear"> First Year </mat-option>
+            <mat-option value="SecondYear"> Second Year </mat-option>
+            <mat-option value="ThirdYear"> Third Year </mat-option>
+            <mat-option value="ForthYear"> Forth Year </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill" *ngIf="isOption() && !addSpeciality">
+          <mat-label>Speciality</mat-label>
+          <mat-select
+            name="speciality"
+            [(ngModel)]="request.specialityID"
+            required
+          >
+            <mat-option
+              *ngFor="let speciality of specialities"
+              name="speciality"
+              value="{{ speciality.id }}"
+              (click)="selectSpeciality(speciality.id)"
+            >
+              {{ speciality.name }}
+            </mat-option>
+          </mat-select>
+          <textarea
+            *ngIf="selectedSpeciality != undefined"
+            matInput
+            placeholder="{{ selectedSpeciality.description }}"
+            name="description"
+            disabled
+          ></textarea>
+        </mat-form-field>
+        <mat-form-field *ngIf="isOption() && addSpeciality">
+          <!-- <mat-label>Speciality</mat-label> -->
+          <input
+            matInput
+            placeholder="Speciality name"
+            type="text"
+            name="speciality-name"
+            [(ngModel)]="selectedSpeciality.name"
+            required
+          />
+        </mat-form-field>
+        <br />
+        <mat-form-field *ngIf="isOption() && addSpeciality">
+          <textarea
+            matInput
+            placeholder="Speciality description"
+            name="speciality-description"
+            [(ngModel)]="selectedSpeciality.description"
+            required
+          ></textarea>
+        </mat-form-field>
+        <br />
+        <button mat-raised-button *ngIf="isOption()" (click)="addSpecialityF()">
+          {{ !addSpeciality ? "add speciality" : "cancel" }}
+        </button>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="add()">
+            {{ data.type }}
+          </button>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="closeMe()">Close</button>
+</mat-dialog-actions>

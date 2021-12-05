@@ -1,77 +1,85 @@
-import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component } from '@angular/core';
-import {
-  MatTreeFlatDataSource,
-  MatTreeFlattener,
-} from '@angular/material/tree';
-
-/**
- * Food data with nested structure.
- * Each node has a name and an optional list of children.
- */
-interface FoodNode {
-  name: string;
-  children?: FoodNode[];
-}
-
-const TREE_DATA: FoodNode[] = [
-  {
-    name: 'Fruit',
-    children: [{ name: 'Apple' }, { name: 'Banana' }, { name: 'Fruit loops' }],
-  },
-  {
-    name: 'Vegetables',
-    children: [
-      {
-        name: 'Green',
-        children: [{ name: 'Broccoli' }, { name: 'Brussels sprouts' }],
-      },
-      {
-        name: 'Orange',
-        children: [{ name: 'Pumpkins' }, { name: 'Carrots' }],
-      },
-    ],
-  },
-];
-
-/** Flat node with expandable and level information */
-interface ExampleFlatNode {
-  expandable: boolean;
-  name: string;
-  level: number;
-}
+import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Branch } from 'src/app/modules/branch';
+import { UniversisityService } from 'src/app/services/universisity.service';
+import { AddBranchComponent } from '../add-branch/add-branch.component';
 
 @Component({
   selector: 'app-university',
   templateUrl: './university.component.html',
   styleUrls: ['./university.component.css'],
 })
-export class UniversityComponent {
-  private _transformer = (node: FoodNode, level: number) => {
-    return {
-      expandable: !!node.children && node.children.length > 0,
-      name: node.name,
-      level: level,
-    };
-  };
+export class UniversityComponent implements OnInit {
+  @Input() branches?: Branch[];
+  @Input() level: number = 0;
+  @Input() id: number = 0;
+  @Input() departmentId: number = 0;
 
-  treeControl = new FlatTreeControl<ExampleFlatNode>(
-    (node) => node.level,
-    (node) => node.expandable
-  );
-
-  treeFlattener = new MatTreeFlattener(
-    this._transformer,
-    (node) => node.level,
-    (node) => node.expandable,
-    (node) => node.children
-  );
-
-  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
-
-  constructor() {
-    this.dataSource.data = TREE_DATA;
+  constructor(
+    private service: UniversisityService,
+    private dialog: MatDialog
+  ) {}
+  ngOnInit(): void {
+    if (this.branches == null || this.branches.length < 1) {
+      this.service.getAllBranches().subscribe((data) => {
+        // console.log(data);
+        this.branches = data;
+      });
+    }
   }
-
-  hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
+  hasChild(branch: Branch): boolean {
+    return branch.children?.length > 0;
+  }
+  expand(branch: Branch): void {
+    branch.expanded = !branch.expanded;
+  }
+  levelString(): string {
+    switch (this.level) {
+      case 0:
+        return 'Faculty';
+      case 1:
+        return 'Department';
+      case 2:
+        return 'Degree';
+      case 3:
+        return 'Option';
+      case 4:
+        return 'Speciality';
+      default:
+        return '';
+    }
+  }
+  add(): void {
+    this.dialog.open(AddBranchComponent, {
+      data: {
+        type: 'create',
+        title: this.levelString(),
+        SuperId: this.id,
+        departmentId: this.departmentId,
+      },
+    });
+  }
+  addNext(branch: Branch): void {
+    this.level++;
+    this.dialog.open(AddBranchComponent, {
+      data: {
+        type: 'create',
+        title: this.levelString(),
+        SuperId: branch.id,
+        departmentId: this.departmentId,
+      },
+    });
+    this.level--;
+  }
+  edit(branch: Branch): void {
+    console.log(branch.id);
+    this.dialog.open(AddBranchComponent, {
+      data: {
+        type: 'edit',
+        title: this.levelString(),
+        branch: branch,
+        departmentId: this.departmentId,
+      },
+    });
+  }
 }
